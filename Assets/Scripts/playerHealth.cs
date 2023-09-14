@@ -28,8 +28,6 @@ public class playerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isDead);
- 
         if (health == 0)
         {          
             StartCoroutine(Explode());            
