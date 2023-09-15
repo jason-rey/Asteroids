@@ -6,7 +6,7 @@ public class playerHealth : MonoBehaviour
 {
     public int health = 4;
     public float invincibleTime = 2;
-    public bool damageAsteroid;
+    public bool damageAsteroid = true;
     public GameObject explosionEffect;
     public bool isDead = false;
     public playerController playerControllerScript;
@@ -59,6 +59,7 @@ public class playerHealth : MonoBehaviour
             if (isInvincible)
             {
                 playerSprite.enabled = false;
+                damageAsteroid = false;
                 if (invincibleTime > 0)
                 {
                     InvokeRepeating("InvincibleFlicker", 0.01f, 0.5f);
@@ -68,6 +69,7 @@ public class playerHealth : MonoBehaviour
                 if (invincibleTime < 0)
                 {
                     playerSprite.enabled = true;
+                    damageAsteroid = true;
                     invincibleTime = 2;
                     CancelInvoke();
                     isInvincible = false;
@@ -83,7 +85,6 @@ public class playerHealth : MonoBehaviour
             if (!isInvincible)
             {
                 health -= 1;
-                damageAsteroid = true;
                 isInvincible = true;               
             }            
         }
@@ -96,7 +97,12 @@ public class playerHealth : MonoBehaviour
 
     IEnumerator Explode()
     {
-        float i = 5;
+        fireEmitter.GetComponent<Animator>().SetBool("isMoving", false);
+        bulletLocation.GetComponent<Animator>().SetBool("New Bool", false);
+        this.GetComponent<playerController>().CancelInvoke();
+        this.GetComponent<playerController>().enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
+
         GameObject explosionObject = GameObject.Instantiate(explosionEffect, this.transform.position, this.transform.rotation);
         Animator objectAnimator = explosionObject.GetComponent<Animator>();
         objectAnimator.SetBool("canExplode", true);
@@ -109,6 +115,8 @@ public class playerHealth : MonoBehaviour
 
     public void NewGame()
     {
+        this.GetComponent<playerController>().enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
         this.transform.position = Vector2.zero;
         health = 4;
         fireEmitter.SetActive(true);

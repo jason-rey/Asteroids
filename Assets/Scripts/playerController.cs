@@ -71,10 +71,7 @@ public class playerController : MonoBehaviour
 
         if (playerHealthScript.isDead)
         {
-            GameObject.Find("Fire_Emitter").SetActive(false);
-            GameObject.Find("Bullet Location").SetActive(false);
-
-            this.enabled = false;
+            CancelInvoke();
         }
 
 

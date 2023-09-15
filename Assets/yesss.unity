@@ -336,11 +336,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2100261546294821773, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878446306286901645, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6089507051391555032, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
       propertyPath: thrustForce
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089507051391555032, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7218652342729034110, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
       propertyPath: playerControllerScript
@@ -719,9 +727,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 592151242}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 592151245}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -734,6 +742,18 @@ MonoBehaviour:
       - m_Target: {fileID: 952145034}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 592151249}
+        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -780,18 +800,13 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424872163}
   m_CullTransparentMesh: 0
---- !u!1 &592151242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2100261546294821773, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
-  m_PrefabInstance: {fileID: 362937574}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &592151245 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6089507051391555032, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
   m_PrefabInstance: {fileID: 362937574}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592151242}
-  m_Enabled: 1
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92a9213ee3b4e7249824d900660ea051, type: 3}
   m_Name: 
@@ -801,7 +816,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7218652342729034110, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
   m_PrefabInstance: {fileID: 362937574}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 592151242}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 024802a7a3ff69c42a342a117129186f, type: 3}
@@ -810,6 +825,11 @@ MonoBehaviour:
 --- !u!4 &592151248 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8958294128664448035, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
+  m_PrefabInstance: {fileID: 362937574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &592151249 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2878446306286901645, guid: da13b2c17c0027b49b03afefa212e4a7, type: 3}
   m_PrefabInstance: {fileID: 362937574}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &684125531

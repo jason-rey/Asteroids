@@ -10,10 +10,11 @@ public class Asteroid : MonoBehaviour
     public Transform playerPos;
     public float bulletDamage = 0.5f;
 
-    private playerHealth playerHealthScript;
+    public playerHealth playerHealthScript;
     private PolygonCollider2D asteroidCol;
     private Rigidbody2D rgbd; 
     private Transform asteroidTransf;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Asteroid : MonoBehaviour
         asteroidTransf.localScale = asteroidSize;
         rgbd = this.GetComponent<Rigidbody2D>();
         asteroidCol = this.GetComponent<PolygonCollider2D>();
+        spriteRenderer = this.GetComponent<SpriteRenderer>();
 
         GameObject player = GameObject.Find("Player");
         playerHealthScript = player.GetComponent<playerHealth>();
@@ -46,6 +48,8 @@ public class Asteroid : MonoBehaviour
             Destroy(this.gameObject);
 
         }
+
+        Debug.Log(playerHealthScript.damageAsteroid);
     }
 
     void AsteroidSize()
@@ -69,33 +73,40 @@ public class Asteroid : MonoBehaviour
         chunkRgbd.velocity = Random.insideUnitCircle.normalized * Random.Range(2, 5);
         rgbd.velocity = Random.insideUnitCircle.normalized * Random.Range(2, 5);
         chunkScript.asteroidLevel = asteroidLevel;
-//        }
-
-    }
-
-    private void OnCollisionStay2D(Collision2D other)
-    {
-        if (other.collider.name == "Player")
-        {
-            if (playerHealthScript.damageAsteroid == true)
-            {
-                asteroidHealth = -1;
-                playerHealthScript.damageAsteroid = false;
-            }
-        }
+        //        }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.collider.tag == "player") {
+            Debug.Log("t");
+            if (playerHealthScript.damageAsteroid == true) {
+                Debug.Log("d");
+                StartCoroutine(Flicker());
+                asteroidHealth = -1;
+            }
+        }
+
         if (other.collider.tag == "Bullet")
         {
+            StartCoroutine(Flicker());
             asteroidHealth -= bulletDamage;
         }
 
         if (other.collider.tag == "Asteroid")
         {
-            Debug.Log("this should work");
             Physics2D.IgnoreCollision(other.collider, asteroidCol);
         }      
     }
+
+    IEnumerator Flicker() {
+        spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(0.1f);
+
+        spriteRenderer.color = Color.white;
+
+        yield return null;
+    }
+
 }

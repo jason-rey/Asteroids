@@ -42,7 +42,6 @@ public class spawnMoreAsteroids : MonoBehaviour
 
     public void SpawnAsteroids()
     {
-        Debug.Log("spawning");
         for (int i = 0; i < desiredAsteroidCount; i++)
         {
             Vector2 asteroidPos = new Vector2(Random.Range(-screenBoundsX, screenBoundsX), Random.Range(-screenBoundsY, screenBoundsY));
